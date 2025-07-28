@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="qr.css" />
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+  <main>
+    <h1>QR Code Generator</h1>
+    <div style="margin-bottom: 1rem;">
+        <label for="qr-type">QR Type:</label>
+        <select id="qr-type">
+            <option value="text">Text / URL</option>
+            <option value="wifi">Wi-Fi</option>
+        </select>
+    </div>
+
+
+
+    <input type="text" id="qr-input" placeholder="Enter text or URL" />
+
+    <div class="qr-section" id="wifi-section" style="display: none;">
+        <label>SSID (Network Name): <input type="text" id="wifi-ssid" /></label>
+        <label>Password: <input type="text" id="wifi-password" /></label>
+        <label>Security:
+            <select id="wifi-security">
+            <option value="WPA">WPA/WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">None (Open)</option>
+            </select>
+        </label>
+        <label>Hidden Network ? 
+            <select id="wifi-hidden">
+            <option value="">No</option>
+            <option value="true">Yes</option>
+            </select>
+        </label>
+    </div>
+
+
+    <div class="flex-row color-picker-container" style="margin-top: 1rem;">
+        <div class="color-picker-row">
+            <label for="fg-color" class="color-picker-label">Dot Color:</label>
+            <div class="color-picker-wrapper">
+                <input type="color" id="fg-color" value="#000000" class="color-picker-popup" />
+            </div>
+        </div>
+
+        <div class="color-picker-row">
+            <label for="bg-color" class="color-picker-label">Background:</label>
+            <div class="color-picker-wrapper">
+                <input type="color" id="bg-color" value="#ffffff" class="color-picker-popup" />
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 1rem;">
+        <label for="ec-slider">Error Correction Level:</label>
+        <input type="range" id="ec-slider" min="0" max="3" step="1" value="1" style="vertical-align: middle; width: 200px;" />
+        <span id="ec-label" style="font-weight: bold; margin-left: 0.5rem;">Medium</span>
+    </div>
+
+
+    <div style="margin-top: 1rem;">
+        <label for="corner-style">Corner Style:</label>
+        <select id="corner-style">
+            <option value="square">Square</option>
+            <option value="dot">Dot</option>
+            <option value="extra-rounded">Extra Rounded</option>
+        </select>
+    </div>
+
+
+    <div style="margin-top: 1rem;">
+        <label for="dot-style">Dot Style:</label>
+        <select id="dot-style">
+            <option value="rounded">Rounded</option>
+            <option value="dots">Dots</option>
+            <option value="square">Square</option>
+        </select>
+    </div>
+
+    <div style="margin-top: 1rem;">
+        <label for="qr-size">QR Code Size (px):</label>
+        <input type="range" id="qr-size" min="150" max="500" value="300" />
+        <span id="qr-size-label">300px</span>
+    </div>
+
+
+    <div class="qr-controls">
+
+        <div class="upload-box">
+            <div class="upload-container">
+                <button id="upload-btn" class="button">Upload</button>
+                <input type="file" id="logo-upload" accept="image/*" style="display: none;" />
+
+                <!-- Filename + image preview -->
+                <div id="upload-preview" class="upload-preview">
+                    <img id="logo-thumb" alt="Logo preview" class="thumb-preview" />
+                    <span id="upload-filename" class="filename-preview">No file chosen</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="button-row">
+            <button id="remove-logo" class="button">Remove Logo</button>
+            <button id="generate-btn" class="button">Generate QR</button>
+        </div>
+
+        <div id="qr-preview"></div>
+
+        <div class="button-download">
+            <button id="download-png" class="button">PNG</button>
+            <button id="download-svg" class="button">SVG</button>
+        </div>
+
+    </div>
+
+
+
+  </main>
+  <script src="qr.js"></script>
+</body>
+</html>
+
